@@ -1,24 +1,20 @@
 package io.xcodebn.patientservice.service;
 
 
-import billing.BillingResponse;
 import io.xcodebn.patientservice.dto.PatientRequestDTO;
 import io.xcodebn.patientservice.dto.PatientResponseDTO;
 import io.xcodebn.patientservice.exception.EmailAlreadyExistsException;
 import io.xcodebn.patientservice.exception.PatientNotFoundException;
 import io.xcodebn.patientservice.grpc.BillingServiceGrpcClient;
+import io.xcodebn.patientservice.kafka.KafkaProducer;
 import io.xcodebn.patientservice.mapper.PatientMapper;
 import io.xcodebn.patientservice.model.Patient;
 import io.xcodebn.patientservice.repository.PatientRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Slf4j
@@ -28,11 +24,13 @@ public class PatientService {
 
     private final BillingServiceGrpcClient billingServiceGrpcClient;
 
+    private final KafkaProducer kafkaProducer;
 
-    public PatientService(PatientRepository patientRepository,BillingServiceGrpcClient billingServiceGrpcClient) {
+
+    public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient, KafkaProducer kafkaProducer) {
         this.patientRepository = patientRepository;
         this.billingServiceGrpcClient = billingServiceGrpcClient;
-
+        this.kafkaProducer = kafkaProducer;
     }
 
     public List<PatientResponseDTO> getPatients() {
@@ -51,12 +49,14 @@ public class PatientService {
                 PatientMapper.toModel(patientRequestDTO)
         );
 
-
          billingServiceGrpcClient.createBillingAccount(
                 patient.getId().toString(),
                 patient.getName(),
                 patient.getEmail()
         );
+
+         kafkaProducer.sendEvent(patient);
+
 
         return PatientMapper.toPatientResponseDTO(patient);
     }
