@@ -1,0 +1,7 @@
+GET http://localhost:4005/validate
+Content-Type: application/json
+Authorization: Bearer 21313123
+
+{
+
+}
