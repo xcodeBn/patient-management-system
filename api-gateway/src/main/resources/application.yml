@@ -13,6 +13,7 @@ spring:
                 - Path=/api/patients/**
               filters:
                 - StripPrefix=1
+                - JwtValidation
             - id: api-docs-patient-route
               uri: http://patient-service:4000
               predicates:
@@ -25,3 +26,9 @@ spring:
                 - Path=/swagger-ui/patients/**
               filters:
                 - RewritePath=/swagger-ui/patients(?<segment>/?.*),/swagger-ui$\{segment}
+            - id: auth-service-route
+              uri: http://auth-service:4005
+              predicates:
+                - Path=/auth/**
+              filters:
+                - StripPrefix=1
