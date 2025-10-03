@@ -2,13 +2,4 @@
 /monkey
 
 
-/Infrastructure/.gradle/
-/Infrastructure/build/
-/Infrastructure/cdk.out/
-/Infrastructure/gradle/
-/Infrastructure/src/
-/Infrastructure/build.gradle.kts
-/Infrastructure/gradlew
-/Infrastructure/gradlew.bat
-/Infrastructure/settings.gradle.kts
-/Infrastructure/README.md
+/Infrastructure/
