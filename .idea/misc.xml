@@ -6,6 +6,7 @@
     <file type="web" url="file://$PROJECT_DIR$/api-gateway" />
     <file type="web" url="file://$PROJECT_DIR$/auth-service" />
     <file type="web" url="file://$PROJECT_DIR$/billing-service" />
+    <file type="web" url="file://$PROJECT_DIR$/integration-tests" />
     <file type="web" url="file://$PROJECT_DIR$/patient-service" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="jbr-21" project-jdk-type="JavaSDK">
