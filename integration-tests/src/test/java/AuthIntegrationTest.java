@@ -1,5 +1,4 @@
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
+import helpers.TestHelper;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,19 +9,16 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class AuthIntegrationTest {
     @BeforeAll
-    static  void setup() {
-        //api gateway
-        RestAssured.baseURI = "http://localhost:4004";
+    static void setup() {
+        TestHelper.setupBaseUri();
     }
-    @Test
-    public void shouldReturnOkWithValidToken(){
 
-        String loginPayload = """
-                {
-                    "email" : "testuser@test.com",
-                    "password" : "password123" 
-                }
-                """;
+    @Test
+    public void shouldReturnOkWithValidToken() {
+        String loginPayload = TestHelper.createLoginPayload(
+                TestHelper.VALID_EMAIL,
+                TestHelper.VALID_PASSWORD
+        );
 
         Response response = given()
                 .contentType(ContentType.JSON)
@@ -31,25 +27,21 @@ public class AuthIntegrationTest {
                 .post("/auth/login")
                 .then()
                 .statusCode(200)
-                .body("token",notNullValue())
+                .body("token", notNullValue())
                 .extract()
                 .response();
 
         System.out.println("Generated token: " + response.jsonPath().getString("token"));
-
     }
 
     @Test
-    public void shouldReturnUnAuthorizedOrInvalidLogin(){
+    public void shouldReturnUnAuthorizedOrInvalidLogin() {
+        String loginPayload = TestHelper.createLoginPayload(
+                "whoisyougang@test.com",
+                "wrongpassword"
+        );
 
-        String loginPayload = """
-                {
-                    "email" : "whoisyougang@test.com",
-                    "password" : "wrongpassword" 
-                }
-                """;
-
-         given()
+        given()
                 .contentType(ContentType.JSON)
                 .body(loginPayload)
                 .when()
