@@ -1,10 +1,7 @@
-import com.google.protobuf.gradle.id
-
 plugins {
     java
     id("org.springframework.boot") version "3.5.6"
     id("io.spring.dependency-management") version "1.1.7"
-    id("com.google.protobuf") version "0.9.4"
 }
 
 group = "io.xcodebn"
@@ -28,6 +25,10 @@ configurations {
 }
 
 dependencies {
+    // --- Proto definitions ---
+    implementation("io.xcodebn:proto-billing-api:1.0-SNAPSHOT")
+    implementation("io.xcodebn:proto-patient-api:1.0-SNAPSHOT")
+
     // --- Spring ---
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -58,24 +59,6 @@ dependencies {
     implementation("net.devh:grpc-spring-boot-starter:3.1.0.RELEASE")
     implementation("com.google.protobuf:protobuf-java:4.29.1")
     compileOnly("org.apache.tomcat:annotations-api:6.0.53") // For Java 9+
-}
-
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:3.25.3"
-    }
-    plugins {
-        id("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:1.69.0"
-        }
-    }
-    generateProtoTasks {
-        all().forEach {
-            it.plugins {
-                id("grpc")
-            }
-        }
-    }
 }
 
 tasks.withType<Test> {

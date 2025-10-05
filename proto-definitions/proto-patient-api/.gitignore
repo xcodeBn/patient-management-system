@@ -1,0 +1,6 @@
+# Gradle build
+build/
+.gradle/
+
+# Generated proto classes
+src/main/generated/

@@ -1,0 +1,10 @@
+# Gradle build
+build/
+.gradle/
+
+# IDE
+.idea/
+*.iml
+
+# Generated sources
+src/main/generated/

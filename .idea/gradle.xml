@@ -13,10 +13,26 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/proto-definitions" name="proto-definitions">
+                <projects>
+                  <project path="$PROJECT_DIR$/proto-definitions" />
+                  <project path="$PROJECT_DIR$/proto-definitions/proto-billing-api" />
+                  <project path="$PROJECT_DIR$/proto-definitions/proto-patient-api" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$/analytics-service" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/analytics-service" />
+            <option value="$PROJECT_DIR$/proto-definitions" />
+            <option value="$PROJECT_DIR$/proto-definitions/proto-billing-api" />
+            <option value="$PROJECT_DIR$/proto-definitions/proto-patient-api" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -37,10 +53,35 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/proto-definitions" name="proto-definitions">
+                <projects>
+                  <project path="$PROJECT_DIR$/proto-definitions" />
+                  <project path="$PROJECT_DIR$/proto-definitions/proto-billing-api" />
+                  <project path="$PROJECT_DIR$/proto-definitions/proto-patient-api" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$/billing-service" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/billing-service" />
+            <option value="$PROJECT_DIR$/proto-definitions" />
+            <option value="$PROJECT_DIR$/proto-definitions/proto-billing-api" />
+            <option value="$PROJECT_DIR$/proto-definitions/proto-patient-api" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/core-pms" />
+        <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/core-pms" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -54,10 +95,37 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/proto-definitions" name="proto-definitions">
+                <projects>
+                  <project path="$PROJECT_DIR$/proto-definitions" />
+                  <project path="$PROJECT_DIR$/proto-definitions/proto-billing-api" />
+                  <project path="$PROJECT_DIR$/proto-definitions/proto-patient-api" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$/patient-service" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/patient-service" />
+            <option value="$PROJECT_DIR$/proto-definitions" />
+            <option value="$PROJECT_DIR$/proto-definitions/proto-billing-api" />
+            <option value="$PROJECT_DIR$/proto-definitions/proto-patient-api" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/proto-definitions" />
+        <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/proto-definitions" />
+            <option value="$PROJECT_DIR$/proto-definitions/proto-billing-api" />
+            <option value="$PROJECT_DIR$/proto-definitions/proto-patient-api" />
           </set>
         </option>
       </GradleProjectSettings>

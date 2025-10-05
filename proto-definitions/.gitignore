@@ -1,0 +1,11 @@
+# Gradle build directories
+build/
+.gradle/
+
+# Proto generated code
+proto-billing-api/build/
+proto-patient-api/build/
+
+# IDE
+.idea/
+*.iml

@@ -21,7 +21,7 @@ public class BillingGrpcService extends BillingServiceImplBase {
         //Bussiness logic e.g save to database and so
 
         BillingResponse response = BillingResponse.newBuilder()
-                .setAccountId("12345")
+                .setAccountId(request.getPatientId())
                 .setStatus("Active")
                 .build();
 
