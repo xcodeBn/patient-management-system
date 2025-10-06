@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/auth-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/auth-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/billing-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/billing-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-pms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core-pms.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/patient-management-pisces.iml" filepath="$PROJECT_DIR$/patient-management-pisces.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/patient-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/patient-service.main.iml" />
     </modules>

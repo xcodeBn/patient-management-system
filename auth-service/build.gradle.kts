@@ -15,10 +15,14 @@ java {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
+    // Core PMS Common Library
+    implementation("io.xcodebn:core-pms:1.0-SNAPSHOT")
+
     // Spring Boot starters
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-security")

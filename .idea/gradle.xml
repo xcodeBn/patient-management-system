@@ -45,10 +45,22 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/core-pms" name="core-pms">
+                <projects>
+                  <project path="$PROJECT_DIR$/core-pms" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$/auth-service" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/auth-service" />
+            <option value="$PROJECT_DIR$/core-pms" />
           </set>
         </option>
       </GradleProjectSettings>

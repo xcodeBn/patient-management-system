@@ -52,6 +52,11 @@ public class ApiResponseAdvice implements ResponseBodyAdvice<Object> {
             return body;
         }
 
+        // If body is already an ApiResponse (e.g., from exception handlers), don't wrap again
+        if (body instanceof ApiResponse) {
+            return body;
+        }
+
         // Wrap in success response
         return ResponseBuilder.success(body);
     }

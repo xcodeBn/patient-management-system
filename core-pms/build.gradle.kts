@@ -1,5 +1,6 @@
 plugins {
     id("java-library")
+    `maven-publish`
 }
 
 group = "io.xcodebn"
@@ -44,4 +45,21 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+// Maven publishing configuration
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+
+            groupId = project.group.toString()
+            artifactId = "core-pms"
+            version = project.version.toString()
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
 }
