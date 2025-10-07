@@ -27,9 +27,14 @@ repositories {
 dependencies {
     // --- Proto definitions ---
     implementation("io.xcodebn:proto-billing-api:1.0-SNAPSHOT")
+    implementation("io.xcodebn:proto-patient-api:1.0-SNAPSHOT")
 
     // --- Spring Boot ---
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    // --- Kafka ---
+    implementation("org.springframework.kafka:spring-kafka")
 
     // --- Lombok ---
     compileOnly("org.projectlombok:lombok")
@@ -44,6 +49,9 @@ dependencies {
 
     // Needed for Java 9+ (javax annotations)
     compileOnly("org.apache.tomcat:annotations-api:6.0.53")
+
+    // --- Database ---
+    runtimeOnly("org.postgresql:postgresql")
 
     // --- Testing ---
     testImplementation("org.springframework.boot:spring-boot-starter-test")

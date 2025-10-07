@@ -1,11 +1,12 @@
 ### POST request to example server
 
-POST localhost:4000/patients
+POST http://localhost:4004/api/patients
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-  "name": "Bomba OOmba",
-  "email": "testing_seervice1234@email.com",
+  "name": "Bomba OOmbaaa",
+  "email": "testinssg_seervicesd3ss@email.com",
   "address": "Earth",
   "dateOfBirth": "1995-03-09",
   "registeredDate": "2025-02-02"

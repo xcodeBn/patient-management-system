@@ -27,11 +27,11 @@ public class AuthIntegrationTest {
                 .post("/auth/login")
                 .then()
                 .statusCode(200)
-                .body("token", notNullValue())
+                .body("data.token", notNullValue())
                 .extract()
                 .response();
 
-        System.out.println("Generated token: " + response.jsonPath().getString("token"));
+        System.out.println("Generated token: " + response.jsonPath().getString("data.token"));
     }
 
     @Test

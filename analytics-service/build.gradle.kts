@@ -28,10 +28,18 @@ dependencies {
     // --- Proto definitions ---
     implementation("io.xcodebn:proto-patient-api:1.0-SNAPSHOT")
 
+    // --- Spring Boot Starters ---
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
+    // --- Kafka ---
     implementation("org.springframework.kafka:spring-kafka")
+
+    // --- Lombok ---
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
+
+    // --- Testing ---
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

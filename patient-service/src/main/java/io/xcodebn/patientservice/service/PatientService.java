@@ -49,14 +49,11 @@ public class PatientService {
                 PatientMapper.toModel(patientRequestDTO)
         );
 
-         billingServiceGrpcClient.createBillingAccount(
-                patient.getId().toString(),
-                patient.getName(),
-                patient.getEmail()
-        );
+        // Send patient created event to Kafka
+        // Billing service will consume this event and create billing account asynchronously
+        kafkaProducer.sendEvent(patient);
 
-         kafkaProducer.sendEvent(patient);
-
+        log.info("Patient created successfully: {} - Billing account will be created asynchronously", patient.getId());
 
         return PatientMapper.toPatientResponseDTO(patient);
     }

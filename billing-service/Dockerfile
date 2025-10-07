@@ -1,23 +1,27 @@
 # ---- Builder stage ----
 FROM gradle:8.10.2-jdk21 AS builder
-WORKDIR /app
 
-# Copy Gradle files first for dependency caching (equivalent to copying pom.xml)
-COPY build.gradle.kts settings.gradle.kts ./
-COPY gradle ./gradle
-COPY gradlew gradlew.bat ./
+# Build proto-definitions first
+WORKDIR /proto-definitions
+COPY proto-definitions/ ./
+
+# Now build billing-service
+WORKDIR /app
+COPY billing-service/build.gradle.kts billing-service/settings.gradle.kts ./
+COPY billing-service/gradle ./gradle
+COPY billing-service/gradlew* ./
 
 # Make gradlew executable
-RUN chmod +x gradlew
+RUN if [ -f gradlew ]; then chmod +x gradlew; fi
 
-# Pre-download dependencies (equivalent to mvn dependency:go-offline)
-RUN ./gradlew --no-daemon dependencies
+# Pre-download dependencies
+RUN if [ -f gradlew ]; then ./gradlew --no-daemon dependencies; fi
 
 # Copy the source code
-COPY src ./src
+COPY billing-service/src ./src
 
-# Package the Spring Boot JAR (equivalent to mvn clean package -DskipTests)
-RUN ./gradlew clean bootJar -x test --no-daemon
+# Package the Spring Boot JAR
+RUN if [ -f gradlew ]; then ./gradlew clean bootJar -x test --no-daemon; fi
 
 # ---- Runner stage ----
 FROM openjdk:21 AS runner

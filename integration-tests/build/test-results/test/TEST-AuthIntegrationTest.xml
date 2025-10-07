@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AuthIntegrationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-10-06T13:34:30.979Z" hostname="APPLEs-MacBook-Pro.local" time="1.893">
+  <properties/>
+  <testcase name="shouldReturnUnAuthorizedOrInvalidLogin()" classname="AuthIntegrationTest" time="1.021"/>
+  <testcase name="shouldReturnOkWithValidToken()" classname="AuthIntegrationTest" time="0.87"/>
+  <system-out><![CDATA[Generated token: eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0dXNlckB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc1OTc1NzY3MiwiZXhwIjoxNzU5NzkzNjcyfQ.eYFUTAVDjyGl1fevH_F7M4yUBgaQmVHrYUhck_pVpEr823paaYUrsVkmljhTkcFg
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
