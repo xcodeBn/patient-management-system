@@ -1,8 +1,9 @@
 package io.xcodebn.billingservice.kafka;
 
 import com.google.protobuf.InvalidProtocolBufferException;
-import io.xcodebn.billingservice.model.BillingAccount;
-import io.xcodebn.billingservice.repository.BillingAccountRepository;
+import io.xcodebn.billingservice.dto.CreateBillingAccountRequest;
+import io.xcodebn.billingservice.exception.BillingAccountAlreadyExistsException;
+import io.xcodebn.billingservice.service.BillingAccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -14,7 +15,7 @@ import patients.events.PatientEvent;
 @RequiredArgsConstructor
 public class PatientEventConsumer {
 
-    private final BillingAccountRepository billingAccountRepository;
+    private final BillingAccountService billingAccountService;
 
     @KafkaListener(topics = "patient", groupId = "billing-service")
     public void consumePatientEvent(byte[] event) {
@@ -34,25 +35,22 @@ public class PatientEventConsumer {
     }
 
     private void createBillingAccount(PatientEvent patientEvent) {
-        String patientId = patientEvent.getPatientId();
+        try {
+            CreateBillingAccountRequest request = CreateBillingAccountRequest.builder()
+                    .patientId(patientEvent.getPatientId())
+                    .patientName(patientEvent.getName())
+                    .patientEmail(patientEvent.getEmail())
+                    .build();
 
-        // Check if billing account already exists
-        if (billingAccountRepository.existsByPatientId(patientId)) {
-            log.info("Billing account already exists for patient: {}", patientId);
-            return;
+            billingAccountService.createBillingAccount(request);
+            log.info("Billing account created successfully for patient: {}", patientEvent.getPatientId());
+
+        } catch (BillingAccountAlreadyExistsException e) {
+            log.info("Billing account already exists for patient: {}", patientEvent.getPatientId());
+
+        } catch (Exception e) {
+            log.error("Failed to create billing account for patient: {}", patientEvent.getPatientId(), e);
+            // In production, you might want to send to DLQ or retry mechanism
         }
-
-        // Create new billing account entity
-        BillingAccount billingAccount = BillingAccount.builder()
-                .patientId(patientId)
-                .patientName(patientEvent.getName())
-                .patientEmail(patientEvent.getEmail())
-                .build();
-
-        // Save to billing database
-        billingAccountRepository.save(billingAccount);
-
-        log.info("Billing account created successfully for patient: {} (ID: {})",
-                patientEvent.getName(), patientId);
     }
 }

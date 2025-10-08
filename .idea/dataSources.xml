@@ -25,7 +25,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="billing-service-db" uuid="b62a306d-14ef-45cc-a91a-7f39770269d2">
+    <data-source source="LOCAL" name="billing-db" uuid="b1d14f10-f5db-4d1f-a173-82c4f9432a60">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
