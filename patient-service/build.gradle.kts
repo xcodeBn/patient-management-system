@@ -59,6 +59,12 @@ dependencies {
     implementation("net.devh:grpc-spring-boot-starter:3.1.0.RELEASE")
     implementation("com.google.protobuf:protobuf-java:4.29.1")
     compileOnly("org.apache.tomcat:annotations-api:6.0.53") // For Java 9+
+
+    //redis
+
+
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.boot:spring-boot-starter-cache")
 }
 
 tasks.withType<Test> {

@@ -11,6 +11,7 @@ import io.xcodebn.patientservice.mapper.PatientMapper;
 import io.xcodebn.patientservice.model.Patient;
 import io.xcodebn.patientservice.repository.PatientRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -27,12 +28,23 @@ public class PatientService {
     private final KafkaProducer kafkaProducer;
 
 
+    @Cacheable(value = "patients", key = "#id")
+    public PatientResponseDTO getPatientById(String id) {
+        return PatientMapper.toPatientResponseDTO(
+                patientRepository.findPatientById(UUID.fromString(id))
+                        .orElseThrow(() -> new PatientNotFoundException("Patient not found with id: " + id))
+        );
+    }
+
+
     public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient, KafkaProducer kafkaProducer) {
         this.patientRepository = patientRepository;
         this.billingServiceGrpcClient = billingServiceGrpcClient;
         this.kafkaProducer = kafkaProducer;
     }
 
+
+    @Cacheable(value = "all-patients", key = "'list'")
     public List<PatientResponseDTO> getPatients() {
         List<Patient> patients = patientRepository.findAll();
 

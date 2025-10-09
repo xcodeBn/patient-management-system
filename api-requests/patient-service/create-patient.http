@@ -5,9 +5,9 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "Bomba OOmbaaa",
-  "email": "patientdonkey@email.com",
-  "address": "Earth",
+  "name": "Hello Asyncy",
+  "email": "async@test.com",
+  "address": "Asyncy",
   "dateOfBirth": "1995-03-09",
   "registeredDate": "2025-02-02"
 }
