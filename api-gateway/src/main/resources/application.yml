@@ -1,6 +1,14 @@
 server:
   port: 4004
 
+resilience4j:
+  ratelimiter:
+    instances:
+      patient-service-limiter:
+        limitForPeriod: 10 # Allow 10 requests
+        limitRefreshPeriod: 1s # per second
+        timeoutDuration: 0 # Fail fast if no permission is available
+
 spring:
   cloud:
     gateway:
@@ -13,6 +21,10 @@ spring:
                 - Path=/api/patients/**
               filters:
                 - StripPrefix=1
+                - name: CircuitBreaker # This is the Resilience4j filter
+                  args:
+                    name: patient-service-limiter # This name matches the instance above
+                    fallbackUri: forward:/fallback/ratelimit # If rate limited, forward to this path
                 - JwtValidation
             - id: api-docs-patient-route
               uri: http://patient-service:4000
